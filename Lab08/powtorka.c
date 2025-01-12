@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <math.h>
 #define MAX_SIZE 100
 int n = 0;
 
@@ -68,17 +69,23 @@ int sumDigits(char arr[]) {
 }
 
 void binaryTree(char arr[]) {
-    int level = 1;
-    int elements = 1;
+    int level = 0;
     int index = 0;
 
     while (index < n) {
-        for (int i = 0; i < elements; i++) {
+        int elementsOnLevel = pow(2, level);
+        int spaces = (pow(2, (int)(log2(n)+ 0.5)) - elementsOnLevel) / 2;
+        for (int i = 0; i < spaces; i++) {
+            printf(" ");
+        }
+
+
+        for (int i = 0; i < elementsOnLevel; i++) {
             printf("%c ", arr[index++]);
         }
         printf("\n");
 
-        elements *= 2;
+        elementsOnLevel *= 2;
         level++;
     }
 }
